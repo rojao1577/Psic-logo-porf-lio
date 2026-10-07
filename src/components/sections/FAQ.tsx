@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { buildWhatsAppLink } from "@/lib/site-config";
@@ -15,9 +16,11 @@ export function FAQ() {
   return (
     <section id="faq" className="bg-bg-alt py-20">
       <Container className="max-w-3xl">
-        <SectionHeading title="Dúvidas frequentes" />
+        <Reveal>
+          <SectionHeading title="Dúvidas frequentes" />
+        </Reveal>
 
-        <div className="mt-10 divide-y divide-black/10">
+        <Reveal delay={120} className="mt-10 divide-y divide-black/10">
           {perguntas.map((item) => (
             <details key={item.pergunta} className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-ink">
@@ -27,13 +30,13 @@ export function FAQ() {
               <p className="mt-3 text-sm text-ink-soft">{item.resposta}</p>
             </details>
           ))}
-        </div>
+        </Reveal>
 
-        <div className="mt-10 text-center">
+        <Reveal delay={240} className="mt-10 text-center">
           <LinkButton href={buildWhatsAppLink()} target="_blank" rel="noopener noreferrer">
             Consultar horários pelo WhatsApp
           </LinkButton>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

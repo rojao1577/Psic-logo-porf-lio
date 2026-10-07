@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconCircle } from "@/components/ui/IconCircle";
 import { buildWhatsAppLink } from "@/lib/site-config";
@@ -30,26 +31,30 @@ export function TiposAtendimento() {
   return (
     <section id="atendimentos" className="py-20">
       <Container>
-        <SectionHeading title="Acompanhamento para diferentes momentos da vida" />
+        <Reveal>
+          <SectionHeading title="Acompanhamento para diferentes momentos da vida" />
+        </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {tipos.map((tipo) => {
+          {tipos.map((tipo, index) => {
             const Icon = tipo.icon;
             return (
-              <Card key={tipo.titulo}>
-                <IconCircle>
-                  <Icon className="h-5 w-5" />
-                </IconCircle>
-                <h3 className="mt-4 font-serif text-xl text-ink">{tipo.titulo}</h3>
-                <p className="mt-3 text-sm text-ink-soft">{tipo.texto}</p>
-                <a
-                  href={buildWhatsAppLink(`Olá! Tenho interesse em: ${tipo.titulo}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent"
-                >
-                  {tipo.cta} →
-                </a>
-              </Card>
+              <Reveal key={tipo.titulo} delay={index * 80}>
+                <Card>
+                  <IconCircle>
+                    <Icon className="h-5 w-5" />
+                  </IconCircle>
+                  <h3 className="mt-4 font-serif text-xl text-ink">{tipo.titulo}</h3>
+                  <p className="mt-3 text-sm text-ink-soft">{tipo.texto}</p>
+                  <a
+                    href={buildWhatsAppLink(`Olá! Tenho interesse em: ${tipo.titulo}`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent"
+                  >
+                    {tipo.cta} →
+                  </a>
+                </Card>
+              </Reveal>
             );
           })}
         </div>

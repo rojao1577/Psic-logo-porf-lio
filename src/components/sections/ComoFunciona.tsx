@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { MessageCircle, UserCheck, ShieldCheck, Activity } from "lucide-react";
 
 const itens = [
@@ -28,16 +29,20 @@ export function ComoFunciona() {
   return (
     <section id="como-funciona" className="bg-bg-dark py-20 text-cream">
       <Container>
-        <h2 className="font-serif text-3xl sm:text-4xl">Como o acompanhamento funciona</h2>
+        <Reveal>
+          <h2 className="font-serif text-3xl sm:text-4xl">Como o acompanhamento funciona</h2>
+        </Reveal>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {itens.map((item) => {
+          {itens.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={item.titulo} className="border-t border-cream/20 pt-6">
-                <Icon className="h-6 w-6" />
-                <h3 className="mt-4 font-serif text-lg">{item.titulo}</h3>
-                <p className="mt-2 text-sm text-cream/80">{item.texto}</p>
-              </div>
+              <Reveal key={item.titulo} delay={index * 80}>
+                <div className="border-t border-cream/20 pt-6">
+                  <Icon className="h-6 w-6" />
+                  <h3 className="mt-4 font-serif text-lg">{item.titulo}</h3>
+                  <p className="mt-2 text-sm text-cream/80">{item.texto}</p>
+                </div>
+              </Reveal>
             );
           })}
         </div>
