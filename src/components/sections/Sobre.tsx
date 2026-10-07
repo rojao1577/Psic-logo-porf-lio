@@ -51,8 +51,8 @@ export function Sobre() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
+            {tags.map((tag, index) => (
+              <Badge key={index}>{tag}</Badge>
             ))}
           </div>
 
