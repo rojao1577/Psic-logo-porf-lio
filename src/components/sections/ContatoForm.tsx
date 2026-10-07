@@ -76,11 +76,11 @@ export function ContatoForm() {
             </div>
 
             <div>
-              <label htmlFor="contato" className="mb-1 block text-sm font-medium text-ink">
+              <label htmlFor="contato-field" className="mb-1 block text-sm font-medium text-ink">
                 Telefone ou e-mail
               </label>
               <input
-                id="contato"
+                id="contato-field"
                 name="contato"
                 required
                 minLength={5}
