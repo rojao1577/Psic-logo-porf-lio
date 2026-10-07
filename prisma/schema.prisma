@@ -1,0 +1,24 @@
+generator client {
+  provider   = "prisma-client"
+  output     = "../src/generated/prisma"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Lead gerado pelo formulário de contato público (ver CLAUDE.md > Funcionalidades
+// principais > Formulário de contato).
+model Lead {
+  id            String   @id @default(cuid())
+  nome          String
+  contato       String // telefone ou e-mail
+  motivo        String   @db.Text // relato do paciente: por que está buscando o psicólogo
+  lgpdConsent   Boolean
+  lgpdConsentAt DateTime
+  contatado     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@map("leads")
+}
