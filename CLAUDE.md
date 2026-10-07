@@ -113,3 +113,19 @@ listar, filtrar por data, marcar contatado, excluir). Todo o conteúdo
 ## Convenções de trabalho
 - Este arquivo deve ser mantido atualizado à medida que novas decisões de
   produto/arquitetura forem tomadas ao longo do projeto.
+- **Modo de aprendizado**: o usuário (João) está aprendendo a usar Next.js,
+  Supabase/Prisma e o resto do stack, e quer escrever boa parte do código
+  ele mesmo para aprender.
+  - **Padrão**: quando a tarefa envolver escrever código, a Claude NÃO
+    escreve o arquivo direto — mostra como o código deveria ficar (trecho
+    comentado/explicado) e explica de forma didática o que cada parte faz
+    e por quê, deixando o usuário digitar/aplicar.
+  - **Exceção**: se o usuário pedir explicitamente pra Claude escrever
+    ("pode escrever", "faz você", "implementa isso" etc.), Claude escreve
+    o código normalmente — mas sempre explicando o que foi feito de forma
+    didática, como se estivesse ensinando.
+  - Tarefas puramente operacionais sem valor didático (configurar infra,
+    rodar migration, debugar erro de ambiente, git/deploy) seguem sendo
+    executadas diretamente pela Claude, sem precisar perguntar — o
+    aprendizado é sobre o código da aplicação, não sobre operação de
+    ferramentas.
