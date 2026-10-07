@@ -37,11 +37,12 @@ contatos/leads de pacientes interessados em consulta, e otimizado para SEO
     Container Registry → servida como Function). Opção conhecida e **não
     usada**: fica reservada caso apareça algo fora do alcance de Node/Next
     (binário nativo, worker em outra linguagem).
-- **Banco de dados**: PostgreSQL como serviço externo gerenciado (ex: Neon ou
-  Supabase) — a Vercel não hospeda o banco.
-  - Conectar **sempre pela connection string com pooler** (PgBouncer do Neon /
-    pooler do Supabase), nunca pela direta: muitos instances simultâneos
-    esgotariam as conexões do Postgres. Migrations usam a conexão direta.
+- **Banco de dados**: PostgreSQL gerenciado via **Supabase** (decisão
+  tomada) — a Vercel não hospeda o banco.
+  - Conectar **sempre pela connection string com pooler** (porta 6543,
+    `?pgbouncer=true`), nunca pela direta (porta 5432): muitos instances
+    simultâneos esgotariam as conexões do Postgres. Migrations usam a
+    conexão direta (`DIRECT_URL`).
 - **Envio de email**: serviço transacional (ex: Resend ou SendGrid) — decisão
   de detalhe técnico, não bloqueante.
 
@@ -101,8 +102,9 @@ listar, filtrar por data, marcar contatado, excluir). Todo o conteúdo
 ## Decisões em aberto / próximos passos
 - Conteúdo real (textos, fotos, dados do psicólogo) — usuário vai fornecer
   pra substituir os placeholders.
-- Escolha final do provedor de Postgres (Neon vs Supabase) — necessário pra
-  preencher `DATABASE_URL`/`DIRECT_URL` reais e rodar a primeira migration.
+- Projeto Supabase real ainda não criado — `.env.local` aponta pra
+  credenciais fictícias até a primeira migration rodar contra o banco de
+  verdade.
 - Escolha do serviço de email (Resend vs SendGrid) — notificação de novo
   lead está stubada em `src/lib/email.ts` (só loga no console).
 - Rate limiting anti-spam/anti-brute-force — ainda não implementado

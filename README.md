@@ -13,7 +13,7 @@ produto e as decisões de arquitetura.
 
 2. Configure o `.env.local` (já existe um com valores de exemplo — ver
    `.env.example` para a referência de cada variável):
-   - `DATABASE_URL` / `DIRECT_URL`: branch de dev do Neon/Supabase (ver
+   - `DATABASE_URL` / `DIRECT_URL`: branch de dev do Supabase (ver
      `CLAUDE.md` > Ambiente de desenvolvimento). Sem isso, o formulário de
      contato e o painel admin não conseguem gravar/ler dados.
    - `ADMIN_EMAIL` / `ADMIN_PASSWORD_HASH`: credenciais do admin único.
