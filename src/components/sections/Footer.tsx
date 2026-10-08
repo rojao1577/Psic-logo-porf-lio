@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Lock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { siteConfig, buildWhatsAppLink } from "@/lib/site-config";
 
@@ -32,6 +33,16 @@ export function Footer() {
             ver https://nextjs.org/docs/messages/blocking-prerender-current-time */}
         © {COPYRIGHT_YEAR} {siteConfig.nomePsicologo}. Todos os direitos reservados.
       </p>
+
+      <div className="mt-2 text-center">
+        <Link
+          href="/admin"
+          className="inline-flex items-center gap-1 text-xs text-ink-soft/50 hover:text-accent focus-visible:text-accent focus-visible:underline"
+        >
+          <Lock className="h-3 w-3" />
+          Painel administrativo
+        </Link>
+      </div>
     </footer>
   );
 }
