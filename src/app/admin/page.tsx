@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { prisma } from "@/lib/db";
 import { toggleContatado, deleteLead, logoutAction } from "./actions";
 import { LogoutButton } from "./LogoutButton";
@@ -32,7 +33,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
   return (
     <main className="min-h-screen flex-1 bg-bg-alt py-10">
       <Container>
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <Reveal className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="font-serif text-2xl text-ink">Leads recebidos</h1>
             <p className="text-sm text-ink-soft">{leads.length} registro(s)</p>
@@ -63,9 +64,9 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
               <LogoutButton />
             </form>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-8 overflow-x-auto rounded-2xl bg-white shadow-soft">
+        <Reveal delay={150} className="mt-8 overflow-x-auto rounded-2xl bg-white shadow-soft">
           <table className="w-full min-w-[720px] text-left text-sm">
             <thead className="border-b border-black/10 text-xs uppercase tracking-wide text-ink-soft">
               <tr>
@@ -129,7 +130,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
               ) : null}
             </tbody>
           </table>
-        </div>
+        </Reveal>
       </Container>
     </main>
   );
