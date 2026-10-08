@@ -1,6 +1,6 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { getSession, verifyCredentials } from "@/lib/auth";
 
 export interface LoginState {
@@ -20,5 +20,7 @@ export async function loginAction(_prevState: LoginState, formData: FormData): P
   session.isAdmin = true;
   await session.save();
 
-  redirect("/admin");
+  // "replace" em vez do padrão "push": a tela de login não deve ficar no
+  // histórico — senão o botão "voltar" do navegador fica preso nela.
+  redirect("/admin", RedirectType.replace);
 }

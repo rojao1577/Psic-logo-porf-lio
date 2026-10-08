@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getSession, isAuthenticated } from "@/lib/auth";
 
@@ -26,5 +26,7 @@ export async function deleteLead(id: string) {
 export async function logoutAction() {
   const session = await getSession();
   session.destroy();
-  redirect("/admin/login");
+  // Sai da área admin de vez, direto pro site público — e "replace" pra não
+  // deixar o /admin (autenticado) preso no histórico de navegação.
+  redirect("/", RedirectType.replace);
 }
