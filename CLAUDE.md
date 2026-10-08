@@ -57,18 +57,25 @@ contatos/leads de pacientes interessados em consulta, e otimizado para SEO
 ## Funcionalidades principais
 
 ### Formulário de contato (público, sem login)
-- Paciente preenche formulário de interesse em consulta (campos a definir
-  em sessão futura).
-- Inclui checkbox de consentimento LGPD (aceite + timestamp).
-- Ao ser enviado: grava no Postgres e dispara email de notificação para o
-  psicólogo.
+- Página própria em `/contato` (não faz parte da home — CTA principal do
+  Header leva pra lá; Hero mantém só o botão de WhatsApp).
+- Campos: nome, telefone/e-mail, motivo (texto livre — o paciente relata o
+  contexto de por que está buscando o psicólogo), checkbox de consentimento
+  LGPD (aceite + timestamp).
+- Ao ser enviado: grava no Postgres via Prisma (`POST /api/leads`) e
+  dispara notificação pro psicólogo (stub, ver `src/lib/email.ts`).
 
 ### Contato via WhatsApp
-- Link direto `wa.me/<numero>` com mensagem pré-preenchida, usado para
-  tratar forma de pagamento/agendamento.
+- Link direto `wa.me/<numero>` com mensagem pré-preenchida.
+- Acessível via botão flutuante fixo (`WhatsAppFloatButton`, presente em
+  todas as páginas) e em CTAs específicos pelo site (ex: cards de "temas
+  atendidos").
 
 ### Painel administrativo (somente o psicólogo)
-- Login único (um usuário administrador só, por enquanto).
+- Acesso via link discreto no rodapé do site ("Painel administrativo",
+  ícone de cadeado) — não aparece na navegação principal.
+- Login único (um usuário administrador só, por enquanto), com opção de
+  mostrar/ocultar a senha digitada.
 - Lista os formulários recebidos.
 - Filtro por data.
 - Marcar registro como "contatado".
@@ -92,23 +99,36 @@ contatos/leads de pacientes interessados em consulta, e otimizado para SEO
   escopo de código do site).
 
 ## Estado atual do código
-Esqueleto implementado: projeto Next.js rodando, home com as 11 seções (nos
-moldes do protótipo de referência, cor de destaque roxa), formulário de
-contato gravando no Postgres via Prisma, painel admin funcional (login,
-listar, filtrar por data, marcar contatado, excluir). Todo o conteúdo
-(textos, fotos, dados do psicólogo) está em placeholder — ver
-`src/lib/site-config.ts` e os componentes em `src/components/sections/`.
+Esqueleto completo e **rodando contra banco real** (Supabase, migration
+`init` aplicada):
+- Repositório: https://github.com/rojao1577/Psic-logo-porf-lio
+- Home com 10 seções (nos moldes do protótipo de referência, cor de
+  destaque roxa) — o formulário saiu da home e virou página própria.
+- `/contato`: formulário funcional, grava lead de verdade no Postgres.
+- `/admin`: painel funcional (login, listar, filtrar por data, marcar
+  contatado, excluir), acesso via link discreto no rodapé.
+- **Scroll reveal**: componente `src/components/ui/Reveal.tsx`
+  (IntersectionObserver + fade-in/translate via Tailwind) aplicado em
+  praticamente todas as seções da home e nas telas do admin (login,
+  cabeçalho+tabela) — elementos aparecem suavemente ao entrar na viewport.
+- Navegação entre `/admin/login` ⇄ `/admin` ⇄ `/` usa
+  `redirect(path, RedirectType.replace)` nas Server Actions, pra não
+  empilhar telas de trânsito no histórico do navegador (botão voltar fica
+  limpo). Logout mostra uma tela de transição ("Saindo...") via
+  `useFormStatus()`, já que a home é estática e não tem um `loading.tsx`
+  natural pra cobrir esse sentido.
+
+Todo o conteúdo (textos, fotos, dados do psicólogo) está em placeholder —
+ver `src/lib/site-config.ts` e os componentes em `src/components/sections/`.
 
 ## Decisões em aberto / próximos passos
 - Conteúdo real (textos, fotos, dados do psicólogo) — usuário vai fornecer
   pra substituir os placeholders.
-- Projeto Supabase real ainda não criado — `.env.local` aponta pra
-  credenciais fictícias até a primeira migration rodar contra o banco de
-  verdade.
 - Escolha do serviço de email (Resend vs SendGrid) — notificação de novo
   lead está stubada em `src/lib/email.ts` (só loga no console).
 - Rate limiting anti-spam/anti-brute-force — ainda não implementado
   (`TODO` marcado em `src/app/api/leads/route.ts` e no login do admin).
+- Deploy na Vercel — ainda não feito; projeto só roda localmente até aqui.
 
 ## Convenções de trabalho
 - Este arquivo deve ser mantido atualizado à medida que novas decisões de
