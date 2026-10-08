@@ -21,9 +21,6 @@ export function Hero() {
               <LinkButton href={buildWhatsAppLink()} target="_blank" rel="noopener noreferrer">
                 Falar pelo WhatsApp
               </LinkButton>
-              <a href="#contato" className="text-sm font-semibold text-accent underline">
-                Ou preencher o formulário
-              </a>
             </div>
             <p className="mt-4 text-sm text-ink-soft">
               {siteConfig.especialidade} · {siteConfig.cidade} e Online

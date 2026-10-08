@@ -8,7 +8,6 @@ import { HorariosModalidades } from "@/components/sections/HorariosModalidades";
 import { GaleriaInstagram } from "@/components/sections/GaleriaInstagram";
 import { Consultorio } from "@/components/sections/Consultorio";
 import { FAQ } from "@/components/sections/FAQ";
-import { ContatoForm } from "@/components/sections/ContatoForm";
 import { Footer } from "@/components/sections/Footer";
 import { WhatsAppFloatButton } from "@/components/sections/WhatsAppFloatButton";
 
@@ -26,7 +25,6 @@ export default function Home() {
         <GaleriaInstagram />
         <Consultorio />
         <FAQ />
-        <ContatoForm />
       </main>
       <Footer />
       <WhatsAppFloatButton />

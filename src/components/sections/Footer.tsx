@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { siteConfig, buildWhatsAppLink } from "@/lib/site-config";
 
@@ -15,11 +16,11 @@ export function Footer() {
         </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-4">
-          <a href="#sobre" className="hover:text-accent">Sobre</a>
-          <a href="#atendimentos" className="hover:text-accent">Atendimentos</a>
-          <a href="#faq" className="hover:text-accent">FAQ</a>
-          <a href="#contato" className="hover:text-accent">Contato</a>
-          <a href="/privacidade" className="hover:text-accent">Privacidade</a>
+          <Link href="/#sobre" className="hover:text-accent">Sobre</Link>
+          <Link href="/#atendimentos" className="hover:text-accent">Atendimentos</Link>
+          <Link href="/#faq" className="hover:text-accent">FAQ</Link>
+          <Link href="/contato" className="hover:text-accent">Contato</Link>
+          <Link href="/privacidade" className="hover:text-accent">Privacidade</Link>
           <a href={buildWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
             WhatsApp
           </a>
