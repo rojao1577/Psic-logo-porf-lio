@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { prisma } from "@/lib/db";
 import { toggleContatado, deleteLead, logoutAction } from "./actions";
+import { LogoutButton } from "./LogoutButton";
 
 interface AdminPageProps {
   searchParams: Promise<{ data?: string }>;
@@ -59,9 +60,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             </form>
 
             <form action={logoutAction}>
-              <button type="submit" className="cursor-pointer text-sm font-medium text-accent underline">
-                Sair
-              </button>
+              <LogoutButton />
             </form>
           </div>
         </div>
