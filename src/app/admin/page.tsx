@@ -45,7 +45,10 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                 defaultValue={data ?? ""}
                 className="rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
               />
-              <button type="submit" className="rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-medium text-ink">
+              <button
+                type="submit"
+                className="cursor-pointer rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-medium text-ink"
+              >
                 Filtrar
               </button>
               {data ? (
@@ -56,7 +59,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             </form>
 
             <form action={logoutAction}>
-              <button type="submit" className="text-sm font-medium text-accent underline">
+              <button type="submit" className="cursor-pointer text-sm font-medium text-accent underline">
                 Sair
               </button>
             </form>
@@ -98,12 +101,18 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <form action={toggleContatado.bind(null, lead.id, !lead.contatado)}>
-                        <button type="submit" className="text-xs font-semibold text-accent underline">
+                        <button
+                          type="submit"
+                          className="cursor-pointer text-xs font-semibold text-accent underline"
+                        >
                           {lead.contatado ? "Marcar pendente" : "Marcar contatado"}
                         </button>
                       </form>
                       <form action={deleteLead.bind(null, lead.id)}>
-                        <button type="submit" className="text-xs font-semibold text-red-600 underline">
+                        <button
+                          type="submit"
+                          className="cursor-pointer text-xs font-semibold text-red-600 underline"
+                        >
                           Excluir
                         </button>
                       </form>
